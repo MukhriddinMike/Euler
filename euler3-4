@@ -1,0 +1,83 @@
+#solution for 3-1
+
+number = 600851475143
+primeFactors = []
+
+i = 2
+while i != number:
+    if number % i == 0:
+        primeFactors.append(i)
+        number = int(number / i)
+        i = 2
+        continue
+    if i == number - 1:
+        primeFactors.append(number)
+    i += 1
+
+print(primeFactors[-1])
+
+++++++++++++++++++++++++++
+#solution for 3-2
+
+def prime_factors(to=10):
+    m=1
+    for i in range(1,to):
+        flag=1
+        for k in range(2,i):
+            if i%k==0:
+                flag=0
+        if flag==1:
+            if(to%i==0):
+                m=m*i
+                if m==to:
+                    print(i)
+                    break
+
+prime_factors(600851475143)
+
+
+#solution for 4-1
+
+w=1
+rev=[]
+def reverse(m):
+
+    rev = 0
+    p=m
+    while (m!=0):
+        rev = (rev*10)+m%10
+        m//= 10
+    if(p==rev):
+        global w
+        if(rev>w):
+            w=rev;
+
+            print(w)
+for i in range(100,1000):
+    for k in range(100,i):
+        flag=1
+        z=i*k
+        reverse(z)
+        
+  ++++++++++++++++++++++++++++++++
+  
+  #solution for 4-2
+  
+  
+  def isPalindrome(s):
+	return s == s[::-1]
+
+value = 1
+
+for i in range(999, 99, -1):
+	for j in range(999, 99, -1):
+		product = i * j
+		if product > value:
+			if isPalindrome(str(product)):
+				value = product
+		else:
+			break
+
+print("{}".format(value))
+  
+  
