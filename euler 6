@@ -1,0 +1,121 @@
+#Solution 6-1
+
+import math, time
+
+start = time.time()
+
+def check_prime(num):
+    is_prime = True
+    for x in range(2, int(math.ceil(math.sqrt(num)))+1):
+        if num%x == 0:
+            is_prime = False
+            break
+    return is_prime
+
+
+def find_prime_at_index(num):
+    index = 1
+    prime = 2
+    temp = 3
+    while True:
+        if index == num:
+            break
+        if check_prime(temp):
+            prime = temp
+            index += 1
+            temp += 1
+        else:
+            temp += 1
+    return "The prime at index {} is {}".format(index, prime)
+
+print(find_prime_at_index(10001))
+
+print(time.time() - start)
+
+
+++++++++++++++++++++++++++++++
+
+#Solution 6-2
+
+import itertools
+count=0
+
+for i in itertools.count(2):
+    flag=1
+    for k in range(2,i):
+        if(i%k==0):
+            flag=0
+            break
+    if flag==1:
+        count+=1
+    if count==10001:
+        print(i)
+        break
+
++++++++++++++++++++++++++++++++
+
+
+#Solution 6-3
+
+
+def SieveOfEratosthenes(n,l): 
+    counter=0
+    prime = [True for i in range(n+1)] 
+    p = 2
+    while (p * p <= n): 
+          
+        if (prime[p] == True): 
+              
+            # Update all multiples of p 
+            for i in range(p * p, n+1, p): 
+                prime[i] = False
+        p += 1
+      
+    for p in range(2, n): 
+        if prime[p]: 
+            counter+=1
+            if(counter==l):
+                print (p)
+                return p;
+            # print (p) 
+    return 0
+
+
+k=10001 # nth prime number
+n = 6*k+1   #1500000 #trial and error 
+while(1):
+ if(SieveOfEratosthenes(n,k)==0):
+        n=n*6 
+ else:
+     break  
+     
+     
+     
+++++++++++++++++++++++++
+
+#solution 7-4
+
+
+from math import sqrt
+import time
+p=time.time()
+def AA(n):
+   a=[2];x=3;l=1
+   while l<n:
+      k=0;y=int(sqrt(x))
+      for i in a:
+         if x%i!=0 and i<=y:
+            k=k+1
+         else:
+            break
+      if a[k]>y:
+         a.append(x)
+         l=l+1
+      x=x+2
+      k=0
+   print(a[-1])
+
+AA(10001)
+q=time.time()
+print(q-p)
+
